@@ -1,9 +1,9 @@
 
 
-import srvcabt from "../../assets/home/servicesabout.png";
-import nc from "../../assets/home/naturalcleaner.png";
-import ts from "../../assets/home/tireshines.png";
-import mw from "../../assets/home/matwashing.png";
+import srvcabt from "../../assets/Home/servicesabout.png";
+import nc from "../../assets/Home/naturalcleaner.png";
+import ts from "../../assets/Home/tireshines.png";
+import mw from "../../assets/Home/matwashing.png";
 
 const ServicesAbout = () => {
   return (

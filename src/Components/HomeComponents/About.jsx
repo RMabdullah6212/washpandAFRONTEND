@@ -1,6 +1,6 @@
 
 
-import Aboutimg from "../../assets/home/about image.png";
+import Aboutimg from "../../assets/Home/about image.png";
 
 const About = () => {
   const services = [
