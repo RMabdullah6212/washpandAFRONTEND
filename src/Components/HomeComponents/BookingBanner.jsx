@@ -16,7 +16,7 @@ const BookingBanner = () => {
 
         <button
           type="button"
-          className="shrink-0 rounded-[8px] bg-white px-8 py-4 text-[18px] font-medium text-[#5195d5] shadow-md transition duration-300 hover:-translate-y-1 hover:bg-[#5195d5] hover:text-white sm:px-10 sm:py-5 sm:text-[20px]"
+          className="shrink-0 rounded-[7px] bg-white px-6 py-3 text-[15px] font-medium text-[#5195d5] shadow-md transition duration-300 hover:-translate-y-1 hover:bg-[#5195d5] hover:text-white sm:px-7 sm:py-3.5 sm:text-[16px] lg:px-8 lg:py-4 lg:text-[18px]"
         >
           Book Now
         </button>

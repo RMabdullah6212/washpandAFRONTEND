@@ -37,7 +37,7 @@ const ClientReviews = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((current) => (current + 1) % reviews.length);
-    }, 4500);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -74,7 +74,10 @@ const ClientReviews = () => {
 
         {/* Mobile */}
         <div className="block md:hidden">
-          <article className="mx-auto w-full max-w-[420px] px-1">
+          <article
+            key={activeIndex}
+            className="review-mobile-enter mx-auto w-full max-w-[420px] px-1"
+          >
             <div className="relative min-h-[260px] rounded-[10px] bg-[#5195d5] px-5 pb-14 pt-16 text-center text-white shadow-[0_18px_45px_rgba(45,110,170,0.25)] sm:px-7">
               <span className="absolute left-1/2 top-1 -translate-x-1/2 font-serif text-[78px] font-bold leading-none text-white/20">
                 “
@@ -111,7 +114,7 @@ const ClientReviews = () => {
                 key={`${review.index}-${review.position}`}
                 onClick={() => setActiveIndex(review.index)}
                 className={`
-                  absolute top-0 cursor-pointer transition-all duration-700 ease-in-out
+                  review-card-reveal absolute top-0 cursor-pointer transition-all duration-700 ease-in-out
                   ${
                     review.position === "left"
                       ? `

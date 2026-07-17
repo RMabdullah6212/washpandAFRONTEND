@@ -89,10 +89,11 @@ const Navbar = () => {
           items-center justify-between px-5
           sm:px-8
           md:min-h-[90px]
-          lg:grid lg:min-h-[105px]
-          lg:grid-cols-[1fr_auto_1fr]
-          lg:px-12 lg:py-[17px]
-          xl:px-0
+          xl:grid xl:min-h-[120px]
+          xl:grid-cols-[1fr_auto_1fr]
+          xl:px-8 xl:py-3
+          min-[1440px]:min-h-[144px]
+          min-[1440px]:px-0 min-[1440px]:py-[17px]
         "
         aria-label="Main navigation"
       >
@@ -110,14 +111,15 @@ const Navbar = () => {
               className="
                 h-[52px] w-[49px] object-contain
                 md:h-[75px] md:w-[86px]
-                lg:h-[110px] lg:w-[104px]
+                xl:h-[96px] xl:w-[90px]
+                min-[1440px]:h-[110px] min-[1440px]:w-[104px]
               "
             />
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden h-[34px] w-[510px] items-center justify-between lg:flex">
+        <div className="hidden h-8 w-[470px] items-center justify-between xl:flex min-[1440px]:h-[34px] min-[1440px]:w-[510px]">
           {links.map((link) => {
             const isActive = isLinkActive(link);
 
@@ -128,19 +130,20 @@ const Navbar = () => {
                 onClick={(event) => handleNavigation(event, link)}
                 className={`
                   relative cursor-pointer rounded-[7px]
-                  flex h-[34px] items-center px-3
-                  font-sans text-[20px] font-normal uppercase
+                  flex h-8 items-center px-2
+                  font-sans text-[18px] font-normal uppercase
                   leading-none tracking-[0]
-                  transition-all duration-300 hover:-translate-y-0.5
+                  transition-colors duration-300
+                  min-[1440px]:h-[34px] min-[1440px]:px-3
+                  min-[1440px]:text-[20px]
 
                   ${
                     isActive
-                      ? "bg-[#5195D5] text-white shadow-[0_6px_16px_rgba(81,149,213,0.3)]"
+                      ? "text-[#5195D5] underline decoration-2 underline-offset-[9px]"
                       : "text-[#202020]"
                   }
 
-                  hover:bg-[#5195D5]
-                  hover:text-white
+                  hover:text-[#5195D5]
                 `}
               >
                 {link.name}
@@ -150,23 +153,23 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Contact */}
-        <div className="hidden items-center justify-end gap-4 lg:flex xl:absolute xl:left-[993px] xl:top-[50px] xl:gap-[15px]">
-          <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[7px] bg-[#5195D5]">
+        <div className="hidden -translate-y-1 items-center justify-self-end gap-3 xl:flex min-[1440px]:absolute min-[1440px]:left-[993px] min-[1440px]:top-[45px] min-[1440px]:translate-y-0 min-[1440px]:gap-[15px]">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[7px] bg-[#5195D5] min-[1440px]:h-[44px] min-[1440px]:w-[44px]">
             <img
               src={phnicon}
               alt="Phone"
-              className="h-[26px] w-[26px] object-contain"
+              className="h-6 w-6 object-contain min-[1440px]:h-[26px] min-[1440px]:w-[26px]"
             />
           </div>
 
-          <div className="text-left xl:relative xl:-top-px xl:h-[46px] xl:w-[148px] xl:shrink-0">
-            <p className="text-[14px] font-normal leading-none text-[#202020]">
+          <div className="shrink-0 text-left min-[1440px]:relative min-[1440px]:-top-px min-[1440px]:h-[46px] min-[1440px]:w-[148px]">
+            <p className="whitespace-nowrap text-[13px] font-normal leading-none text-[#202020] min-[1440px]:text-[14px]">
               Have any Question?
             </p>
 
             <a
               href="tel:+923455467549"
-              className="mt-3 block cursor-pointer whitespace-nowrap text-[19px] font-medium leading-none text-[#202020] transition-colors duration-300 hover:text-[#5195D5]"
+              className="mt-2.5 block cursor-pointer whitespace-nowrap text-[16px] font-medium leading-none text-[#202020] transition-colors duration-300 hover:text-[#5195D5] min-[1440px]:mt-3 min-[1440px]:text-[19px]"
             >
               +92 (345) 5467549
             </a>
@@ -178,11 +181,13 @@ const Navbar = () => {
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
           className="
-            grid h-11 w-11 cursor-pointer place-items-center
-            rounded-lg bg-[#5195D5] text-white
+            grid h-10 w-10 cursor-pointer place-items-center
+            rounded-[7px] bg-[#5195D5] text-white
             transition duration-300
             hover:bg-[#3f82c3]
-            lg:hidden
+            sm:h-11 sm:w-11 sm:rounded-lg
+            md:h-12 md:w-12
+            xl:hidden
           "
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -194,7 +199,7 @@ const Navbar = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="h-6 w-6"
+              className="h-[22px] w-[22px] sm:h-6 sm:w-6 md:h-[26px] md:w-[26px]"
               aria-hidden="true"
             >
               <path
@@ -209,7 +214,7 @@ const Navbar = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="h-6 w-6"
+              className="h-[22px] w-[22px] sm:h-6 sm:w-6 md:h-[26px] md:w-[26px]"
               aria-hidden="true"
             >
               <path
@@ -229,7 +234,7 @@ const Navbar = () => {
         className={`
           overflow-hidden bg-white
           transition-all duration-300
-          lg:hidden
+          xl:hidden
           ${
             menuOpen
               ? "visible max-h-[420px] opacity-100"
@@ -254,8 +259,8 @@ const Navbar = () => {
 
                   ${
                     isActive
-                      ? "bg-[#5195D5] text-white"
-                      : "text-[#202020] hover:bg-[#5195D5] hover:text-white"
+                      ? "text-[#5195D5] underline decoration-2 underline-offset-8"
+                      : "text-[#202020] hover:text-[#5195D5]"
                   }
                 `}
               >
