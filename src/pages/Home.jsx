@@ -1,4 +1,4 @@
-import HeroSection from '../Components/HomeComponents/HeroSection'
+import HeroSection from '../Components/HeroSection'
 import VehicleType from '../Components/HomeComponents/VehicleType'
 import WashPackage from '../Components/HomeComponents/washPackage'
 import About from '../Components/HomeComponents/About'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import VehicleType from "../Components/HomeComponents/VehicleType";
-import HeroSection from "../Components/HomeComponents/HeroSection";
+import HeroSection from "../Components/HeroSection";
 import WashPackage from "../Components/HomeComponents/washPackage";
 import AddOns from "../Components/Booking/Addons";
 import BookingForm from "../Components/Booking/BookingForm";

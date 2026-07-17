@@ -1,8 +1,8 @@
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-import heroImage from "../../assets/Home/hero image.jpg";
-import bookHeroImage from "../../assets/Home/bookhero.jpg";
+import heroImage from "../assets/Home/hero image.jpg";
+import bookHeroImage from "../assets/Home/bookhero.jpg";
 
 const HeroSection = () => {
   const location = useLocation();
