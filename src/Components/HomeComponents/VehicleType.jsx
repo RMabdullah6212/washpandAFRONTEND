@@ -1,57 +1,35 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
-import hatchbackImage from "../../assets/Home/hatchback.png";
-import sedanImage from "../../assets/Home/sedan.png";
-import crossOverImage from "../../assets/Home/crossover.png";
-import miniVanImage from "../../assets/Home/minivan.png";
-import suvImage from "../../assets/Home/suv.png";
-
-const vehicles = [
-  {
-    id: "hatchback",
-    name: "Hatchback",
-    image: hatchbackImage,
-  },
-  {
-    id: "sedan",
-    name: "Sedan",
-    image: sedanImage,
-  },
-  {
-    id: "crossover",
-    name: "Crossover",
-    image: crossOverImage,
-  },
-  {
-    id: "suv",
-    name: "SUV",
-    image: suvImage,
-  },
-  {
-    id: "minivan",
-    name: "Minivan",
-    image: miniVanImage,
-  },
-];
+import { api } from "../../services/api";
 
 const VehicleType = ({ onVehicleSelect, items, selectedVehicleId = "" }) => {
   const location = useLocation();
+  const [homeVehicles, setHomeVehicles] = useState([]);
 
   const isBookingPage = location.pathname.startsWith("/booking");
 
-  const displayedVehicles =
-    isBookingPage && items?.length
-      ? items.map((vehicle) => ({
-          ...(vehicles.find((localVehicle) => localVehicle.id === vehicle.code) || {}),
-          ...vehicle,
-          id: vehicle.code,
-          name: vehicle.name || "Vehicle Type",
-          image:
-            vehicles.find((localVehicle) => localVehicle.id === vehicle.code)?.image ||
-            vehicle.imageUrl ||
-            hatchbackImage,
-        }))
-      : vehicles;
+  useEffect(() => {
+    if (items !== undefined) return undefined;
+
+    let active = true;
+    api.getCatalog()
+      .then((catalog) => {
+        if (active) setHomeVehicles(catalog.vehicleTypes || []);
+      })
+      .catch(() => {
+        if (active) setHomeVehicles([]);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [items]);
+
+  const displayedVehicles = (items !== undefined ? items : homeVehicles).map((vehicle) => ({
+    ...vehicle,
+    id: vehicle.code || vehicle._id,
+    name: vehicle.name || "Vehicle Type",
+  }));
 
   const handleVehicleSelect = (vehicle) => {
     if (!isBookingPage) return;
@@ -124,7 +102,7 @@ const VehicleType = ({ onVehicleSelect, items, selectedVehicleId = "" }) => {
                   }`}
                 >
                   <img
-                    src={vehicle.image}
+                    src={vehicle.imageUrl}
                     alt={`${vehicle.name} vehicle`}
                     className={`w-full object-contain ${
                       isBookingPage
