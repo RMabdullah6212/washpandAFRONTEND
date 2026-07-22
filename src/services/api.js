@@ -23,6 +23,7 @@ async function request(path, options = {}) {
 }
 
 export const api = {
+  getGallery: () => request("/gallery"),
   getCatalog: () => request("/catalog"),
   getPackages: (vehicleType) =>
     request(`/catalog/packages?vehicleType=${encodeURIComponent(vehicleType)}`),

@@ -1,12 +1,28 @@
-import first from "../../assets/Home/1.png";
-import third from "../../assets/Home/3.png";
-import fourth from "../../assets/Home/4.png";
-import fifth from "../../assets/Home/5.png";
-import sixth from "../../assets/Home/6.png";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 import logo from "../../assets/Home/logo.png";
 
 const Gallery = () => {
-  const images = [first, third, fourth, fifth, sixth];
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+
+    api
+      .getGallery()
+      .then((items) => {
+        if (active) setImages(Array.isArray(items) ? items.slice(0, 6) : []);
+      })
+      .catch(() => {
+        if (active) setImages([]);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  if (images.length === 0) return null;
 
   return (
     <section id="gallery" className="w-full overflow-hidden bg-white py-10">
@@ -22,14 +38,14 @@ const Gallery = () => {
               className="flex shrink-0 flex-nowrap gap-1 pr-1"
               aria-hidden={setIndex === 1}
             >
-              {images.map((image, index) => (
+              {images.map((image) => (
                 <div
-                  key={`${setIndex}-${index}`}
+                  key={`${setIndex}-${image._id}`}
                   className="group relative h-[300px] w-[190px] shrink-0 overflow-hidden rounded-xl sm:h-[380px] sm:w-[240px] md:h-[460px] md:w-[280px] lg:h-[560px] lg:w-[23vw] lg:rounded-[14px]"
                 >
                   <img
-                    src={image}
-                    alt={setIndex === 0 ? `Car wash gallery ${index + 1}` : ""}
+                    src={image.thumbnailUrl || image.mediaUrl}
+                    alt={setIndex === 0 ? image.altText || image.title : ""}
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
 
